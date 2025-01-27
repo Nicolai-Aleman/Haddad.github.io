@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Haddad - Dulces Árabes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Fuentes de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="header">
+    <div class="logo">Haddad</div>
+    <nav>
+      <ul>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="carrito-icon" onclick="toggleCarrito()">
+      <span id="carrito-count">0</span>
+      🛒
+    </div>
+  </header>
+
+  <!-- Banner/Hero -->
+  <section class="hero">
+    <h1>Dulces Árabes de Alta Calidad</h1>
+    <p>Disfruta de la auténtica repostería gourmet de Medio Oriente, hecha con los mejores ingredientes.</p>
+    <a href="#productos" class="btn-primary">Ver Productos</a>
+  </section>
+
+  <!-- Sección de Historia -->
+<section id="historia" class="historia-section">
+  <div class="historia-contenedor">
+    <div class="texto-historia">
+      <h2>Un Legado Libanés</h2>
+      <p>
+        Haddad nace de un legado familiar de más de 50 años, transmitido cuidadosamente de generación en generación desde el Líbano. Cada receta, perfeccionada a lo largo de décadas, combina técnicas artesanales con ingredientes premium, para brindarte la verdadera experiencia gourmet de Medio Oriente.
+
+En el siglo XXI, la herencia de los Haddad renace de la mano de Karina Sauma Haddad, depositaria de un saber milenario que fusiona tradición y modernidad. Su pasión por la repostería libanesa se refleja en cada detalle: hojaldres suaves y crujientes, sabores intensos y aromas exóticos que te transportan directamente a la magia del Oriente Medio.
+
+Descubre un pedacito de historia en cada bocado, donde cada baklava, cada pastel y cada dulce encierra la cálida hospitalidad libanesa y el amor familiar que forjó nuestra tradición.
+      </p>
+    </div>
+    <div class="imagenes-historia">
+      <img src="imgs/medio-oriente.jpeg" alt="Paisaje de Medio Oriente" />
+      <img src="imgs/libano-atardecer.jpeg" alt="Atardecer en Líbano" />
+    </div>
+  </div>
+</section>
+
+  <!-- Sección de Productos -->
+  <section id="productos" class="productos-container">
+    
+    <!-- Producto 1: Baklava de nuez -->
+    <div class="producto-card">
+      <img src="imgs/baklava-nuez.jpg" alt="Baklava de nuez" />
+      <h3>Baklava de nuez</h3>
+      <p class="precio">80 Bs / docena</p>
+      <label>Cantidad (docenas):
+        <input type="number" min="1" value="1" id="cant-baklava-nuez" />
+      </label>
+      <button onclick="agregarAlCarrito('Baklava de nuez', 80, 'cant-baklava-nuez', 'docena')">
+        Agregar al carrito
+      </button>
+    </div>
+    
+    <!-- Producto 2: Baklava de pistacho -->
+    <div class="producto-card">
+      <img src="imgs/baklava-pistacho.jpg" alt="Baklava de pistacho" />
+      <h3>Baklava de pistacho</h3>
+      <p class="precio">100 Bs / docena</p>
+      <label>Cantidad (docenas):
+        <input type="number" min="1" value="1" id="cant-baklava-pistacho" />
+      </label>
+      <button onclick="agregarAlCarrito('Baklava de pistacho', 100, 'cant-baklava-pistacho', 'docena')">
+        Agregar al carrito
+      </button>
+    </div>
+
+    <!-- Producto 3: Baklava cake de pistacho -->
+    <div class="producto-card">
+      <img src="imgs/baklava-cake-pistacho.jpg" alt="Baklava cake de pistacho" />
+      <h3>Baklava cake de pistacho</h3>
+      <p class="precio">350 Bs / bandeja</p>
+      <label>Cantidad (bandejas):
+        <input type="number" min="1" value="1" id="cant-cake-pistacho" />
+      </label>
+      <button onclick="agregarAlCarrito('Baklava cake de pistacho', 350, 'cant-cake-pistacho', 'bandeja')">
+        Agregar al carrito
+      </button>
+    </div>
+
+  </section>
+
+  <!-- Carrito Modal/Lateral -->
+  <aside id="carrito" class="carrito">
+    <h2>Tu Carrito</h2>
+    <div id="carrito-items"></div>
+    <div class="carrito-total">
+      <span>Total: </span>
+      <span id="carrito-total-amount">0 Bs</span>
+    </div>
+    <button class="btn-primary" onclick="irAPagar()">Ir a pagar</button>
+    <button class="btn-secondary" onclick="vaciarCarrito()">Vaciar Carrito</button>
+    <button class="btn-secondary" onclick="toggleCarrito()">Cerrar</button>
+  </aside>
+
+  <!-- Sección de Pago/Resumen (puede ser en la misma página, tipo modal) -->
+  <div id="pago-section" class="pago-section hidden">
+    <div>
+      <h2>Resumen de tu Pedido</h2>
+      <div id="resumen-pedido"></div>
+      <p class="texto-monto">
+        <strong>Total a pagar: </strong><span id="pago-total"></span> Bs
+      </p>
+      
+      <div class="qr-container">
+        <h3>Escanea este código QR para pagar</h3>
+        <!-- Aquí va la imagen del QR genérico -->
+        <img src="imgs/qr-banco-economico.jpg" alt="Código QR de pago" />
+        <p>
+          Ingresa manualmente el total indicado:
+          <span id="pago-total-qr"></span> Bs
+        </p>
+      </div>
+
+      <p class="instrucciones">
+        Una vez realizado el pago, confirma tu pedido haciendo clic en el botón de abajo 
+        y envíanos tu ubicación por WhatsApp.
+      </p>
+      <a class="btn-primary" id="confirmar-whatsapp" href="#" target="_blank">
+        Confirmar Pedido
+      </a>
+      <button class="btn-secondary" onclick="cerrarPago()">Volver</button>
+    </div>
+  </div>
+
+  <!-- Sección de Contacto -->
+  <section id="contacto" class="contacto">
+    <h2>Contacto</h2>
+    <p>Para cualquier duda o pedido especial, contáctanos vía WhatsApp:</p>
+    <a href="https://wa.me/59170822155" class="btn-primary" target="_blank">
+      Chat en WhatsApp
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Haddad. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Script principal -->
+  <script src="app.js"></script>
+</body>
+</html>
